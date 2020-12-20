@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { Linking, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { TextInputMask } from 'react-native-masked-text';
 
 export default function App() {
@@ -24,15 +24,20 @@ export default function App() {
           setNumber(newNumber)
         }}
       />
-      <TouchableOpacity style={styles.button} accessibilityLabel="Send message" onPress={() => sendMessage(number)}>
-        <Text>Enviar mensagem</Text>
+      <TouchableOpacity style={styles.button} accessibilityLabel="Send message" onPress={() => sendMessageAPI(number)}>
+        <Text style={styles.buttonText}>Enviar mensagem</Text>
       </TouchableOpacity>
     </View>
   );
 }
 
-function sendMessage(phoneNumber: string) {
-  console.log(phoneNumber);
+function sendMessageAPI(phoneNumber: string) {
+  const phoneRaw = '+55' + phoneNumber.replace('(', '').replace(')', '').replace('-', '').replace(' ', '')
+  Linking.openURL(`https://api.whatsapp.com/send?phone=${phoneRaw}&text=Alo`).then(() => {
+    console.log('Sent')
+  }).catch(error => {
+    console.log(error);
+  })
 }
 
 const styles = StyleSheet.create({
@@ -46,7 +51,7 @@ const styles = StyleSheet.create({
     fontSize: 25
   },
   input: {
-    fontSize: 20,
+    fontSize: 25,
     borderWidth: 1,
     padding: 4,
     borderRadius: 4,
@@ -55,8 +60,10 @@ const styles = StyleSheet.create({
   button: {
     borderRadius: 4,
     marginTop: 10,
-    padding: 5,
-    // width: '80%',
+    padding: 6,
     backgroundColor: '#55e678'
+  },
+  buttonText: {
+    fontSize: 20,
   }
 });
