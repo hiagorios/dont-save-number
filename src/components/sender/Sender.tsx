@@ -1,19 +1,19 @@
 import i18n from 'i18n-js';
 import React, { useState } from 'react';
-import { Linking, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { Linking, Text, TouchableOpacity, View } from 'react-native';
 import { TextInputMask } from 'react-native-masked-text';
+import styled from 'styled-components/native';
 
 export default function Sender() {
 
     const [number, setNumber] = useState('');
 
     return (
-        <View style={styles.senderContainer}>
-            <Text style={styles.label}>
+        <View>
+            <Label>
                 {i18n.t('label')}
-            </Text>
-            <TextInputMask
-                style={styles.input}
+            </Label>
+            <InputMask
                 placeholder="(99) 9 9999-9999"
                 type={'cel-phone'}
                 options={{
@@ -26,11 +26,11 @@ export default function Sender() {
                     setNumber(newNumber)
                 }}
             />
-            <TouchableOpacity style={styles.button} accessibilityLabel="Send message" onPress={() => sendMessageAPI(number)}>
-                <Text style={styles.buttonText}>
+            <SendButton accessibilityLabel="Send message" onPress={() => sendMessageAPI(number)}>
+                <SendButtonText>
                     {i18n.t('buttonText')}
-                </Text>
-            </TouchableOpacity>
+                </SendButtonText>
+            </SendButton>
         </View>
     );
 }
@@ -44,28 +44,26 @@ function sendMessageAPI(phoneNumber: string, message: string = '') {
     })
 }
 
-const styles = StyleSheet.create({
-    senderContainer: {
-    },
-    label: {
-        textAlign: 'center',
-        fontSize: 25
-    },
-    input: {
-        fontSize: 25,
-        borderWidth: 1,
-        padding: 4,
-        borderRadius: 4,
-        marginTop: 5
-    },
-    button: {
-        borderRadius: 4,
-        marginTop: 10,
-        padding: 6,
-        backgroundColor: '#55e678'
-    },
-    buttonText: {
-        textAlign: 'center',
-        fontSize: 20,
-    }
-});
+const Label = styled(Text)`
+    text-align: center;
+    font-size: 25px;
+`;
+
+const InputMask = styled(TextInputMask)`
+    font-size: 25px;
+    border-width: 1px;
+    padding: 4px;
+    border-radius: 4px;
+`;
+
+const SendButton = styled(TouchableOpacity)`
+    border-radius: 4px;
+    margin-top: 10px;
+    padding: 6px;
+    background-color: #55e678;
+`;
+
+const SendButtonText = styled(Text)`
+    text-align: center;
+    font-size: 20px;
+`;

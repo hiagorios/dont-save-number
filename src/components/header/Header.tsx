@@ -1,38 +1,35 @@
 import i18n from 'i18n-js';
 import React from 'react';
-import { Image, StyleSheet, Text, View } from 'react-native';
+import { Image, Text, View } from 'react-native';
+import styled from 'styled-components/native';
 
 export default function Header() {
-
     return (
-        <View style={styles.toolbarContainer}>
-            <Image
-                style={styles.toolbarLogo}
-                source={require("src/assets/image/icon.png")}
-            />
-            <Text style={styles.toolbarText}>
+        <ToolbarContainer>
+            <ToolbarLogo source={require("src/assets/image/icon.png")} />
+            <ToolbarText>
                 {i18n.t('toolbarText')}
-            </Text>
-        </View>
+            </ToolbarText>
+        </ToolbarContainer>
     );
 }
 
-const styles = StyleSheet.create({
-    toolbarContainer: {
-        width: '100%',
-        flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'space-around',
-        height: 60,
-        backgroundColor: 'lightgray',
-    },
-    toolbarLogo: {
-        width: 50,
-        height: 50
-    },
-    toolbarText: {
-        color: 'white',
-        fontSize: 25,
-        textAlign: 'center',
-    }
-});
+const ToolbarContainer = styled(View)`
+    width: 100%;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    height: 60px;
+    background-color: lightgray;
+`;
+
+const ToolbarLogo = styled(Image)`
+    width: 50px;
+    height: 50px;
+`;
+
+const ToolbarText = styled(Text)`
+    color: white;
+    font-size: 25px;
+    text-align: center;
+`;

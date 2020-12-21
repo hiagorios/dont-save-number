@@ -2,11 +2,12 @@
 import * as Localization from 'expo-localization';
 import i18n from 'i18n-js';
 import React from 'react';
-import { SafeAreaView, StatusBar, StyleSheet, View } from 'react-native';
-import Header from './src/components/header/Header';
-import Sender from './src/components/sender/Sender';
+import { SafeAreaView, StatusBar, View } from 'react-native';
 import messages_en from "src/translations/en.json";
 import messages_pt from "src/translations/pt.json";
+import styled from 'styled-components/native';
+import Header from './src/components/header/Header';
+import Sender from './src/components/sender/Sender';
 
 
 i18n.translations = {
@@ -20,25 +21,25 @@ i18n.fallbacks = true;
 i18n.locale = Localization.locale.split('-')[0];
 
 export default function App() {
+
   return (
-    <SafeAreaView style={styles.container}>
+    <OverallContainer>
       <Header></Header>
-      <View style={styles.mainContainer}>
+      <MainContainer>
         <Sender></Sender>
-      </View>
-    </SafeAreaView>
+      </MainContainer>
+    </OverallContainer>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    marginTop: StatusBar.currentHeight,
-    backgroundColor: '#fff',
-  },
-  mainContainer: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center'
-  },
-});
+const OverallContainer = styled(SafeAreaView)`
+  flex: 1;
+  margin-top: ${StatusBar.currentHeight}px;
+  background-color: #fff;
+`;
+
+const MainContainer = styled(View)`
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+`;
