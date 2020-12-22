@@ -18,7 +18,6 @@ const ToolbarContainer = styled(View)`
     width: 100%;
     flex-direction: row;
     align-items: center;
-    justify-content: space-around;
     height: 60px;
     background-color: lightgray;
 `;
@@ -26,10 +25,12 @@ const ToolbarContainer = styled(View)`
 const ToolbarLogo = styled(Image)`
     width: 50px;
     height: 50px;
+    margin-left: 5%;
 `;
 
 const ToolbarText = styled(Text)`
     color: white;
     font-size: 25px;
+    margin-left: 5%;
     text-align: center;
 `;
