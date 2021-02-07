@@ -1,5 +1,6 @@
 {
-    "label": "Digite o número",
-    "buttonText": "Enviar mensagem",
+    "label": "Digite o número que você não quer salvar",
+    "messageButtonText": "Enviar mensagem",
+    "callButtonText": "Ligar",
     "toolbarText": "Não salve o número"
 }

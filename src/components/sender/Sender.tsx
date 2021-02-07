@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { Linking, Text, TouchableOpacity, View } from 'react-native';
 import { TextInputMask } from 'react-native-masked-text';
 import styled from 'styled-components/native';
+import { css } from 'styled-components'
 
 export default function Sender() {
 
@@ -26,11 +27,16 @@ export default function Sender() {
                     setNumber(newNumber)
                 }}
             />
-            <SendButton accessibilityLabel="Send message" onPress={() => sendMessageAPI(number)}>
-                <SendButtonText>
-                    {i18n.t('buttonText')}
-                </SendButtonText>
-            </SendButton>
+            <MessageButton accessibilityLabel="Send message" onPress={() => sendMessageAPI(number)}>
+                <MessageText>
+                    {i18n.t('messageButtonText')}
+                </MessageText>
+            </MessageButton>
+            <CallButton>
+                <CallText>
+                    {i18n.t('callButtonText')}
+                </CallText>
+            </CallButton>
         </View>
     );
 }
@@ -46,24 +52,46 @@ function sendMessageAPI(phoneNumber: string, message: string = '') {
 
 const Label = styled(Text)`
     text-align: center;
-    font-size: 25px;
+    font-size: 16px;
 `;
 
-const InputMask = styled(TextInputMask)`
-    font-size: 25px;
+const Bordered = css`
     border-width: 1px;
     padding: 4px;
     border-radius: 4px;
 `;
 
-const SendButton = styled(TouchableOpacity)`
-    border-radius: 4px;
-    margin-top: 10px;
-    padding: 6px;
-    background-color: #55e678;
+const InputMask = styled(TextInputMask)`
+    ${Bordered}
+    font-size: 25px;
+    color: var(--color-gray);
+    background-color: white;
 `;
 
-const SendButtonText = styled(Text)`
+const Button = styled(TouchableOpacity)`
+    ${Bordered}
+    margin-top: 10px;
+    padding: 6px;
+`;
+
+const MessageButton = styled(Button)`
+    background-color: var(--color-green);
+`;
+
+const CallButton = styled(Button)`
+    background-color: var(--color-yellow);
+`;
+
+const ButtonText = styled(Text)`
     text-align: center;
     font-size: 20px;
+    color: var(--color-white)
+`;
+
+const MessageText = styled(ButtonText)`
+    color: var(--color-white);
+`;
+
+const CallText = styled(ButtonText)`
+    color: var(--color-black);
 `;

@@ -1,5 +1,6 @@
 {
-    "label": "Insert phone number",
-    "buttonText": "Send message",
+    "label": "Insert the number you dont wanna save",
+    "messageButtonText": "Send message",
+    "callButtonText": "Call",
     "toolbarText": "Dont save the number"
 }

@@ -2,11 +2,11 @@
 import * as Localization from 'expo-localization';
 import i18n from 'i18n-js';
 import React from 'react';
-import { SafeAreaView, StatusBar, View } from 'react-native';
+import { Image, SafeAreaView, StatusBar, Text, View } from 'react-native';
 import messages_en from "src/translations/en.json";
 import messages_pt from "src/translations/pt.json";
 import styled from 'styled-components/native';
-import Header from './src/components/header/Header';
+import GlobalStyle from './src/assets/styles/global-styles';
 import Sender from './src/components/sender/Sender';
 
 
@@ -24,7 +24,13 @@ export default function App() {
 
   return (
     <OverallContainer>
-      <Header></Header>
+      <GlobalStyle />
+      <LogoContainer>
+        <AppLogo source={require("src/assets/image/logo_shadowed.png")} />
+        <AppTitle>
+          {i18n.t('toolbarText')}
+        </AppTitle>
+      </LogoContainer>
       <MainContainer>
         <Sender></Sender>
       </MainContainer>
@@ -32,14 +38,31 @@ export default function App() {
   );
 }
 
+const LogoContainer = styled(View)`
+  flex-direction: column;
+  align-items: center;
+  margin: 15% 0;
+`;
+
+const AppLogo = styled(Image)`
+  width: 150px;
+  height: 150px;
+`;
+
+const AppTitle = styled(Text)`
+  font-size: 24px;
+  margin-top: -10px;
+`;
+
 const OverallContainer = styled(SafeAreaView)`
   flex: 1;
+  align-items: center;
+  font-family: Roboto-Regular;
   margin-top: ${StatusBar.currentHeight}px;
-  background-color: #fff;
+  background-color: #F0F0F0;
 `;
 
 const MainContainer = styled(View)`
-  flex: 1;
   justify-content: center;
   align-items: center;
 `;
